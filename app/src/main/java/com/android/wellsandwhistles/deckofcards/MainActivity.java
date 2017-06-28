@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //todo handle config changes
     private void updateUi() {
         yourCard = mCards.dealOneCard();
         textDeckSize.setText("Deck size: " + Integer.toString(mCards.getDeckSize()));
