@@ -54,8 +54,11 @@ public class Cards {
         //todo shuffle deck
     }
 
-    // Returns the top card of the deck
+    // Returns the top card of the deck then deletes it so we do not draw it again
     public Card dealOneCard() {
-        return mCards.get(0);
+        Card yourCard = mCards.get(0);
+        mCards.remove(0);
+        mDeckSize--;
+        return yourCard;
     }
 }

@@ -3,6 +3,7 @@ package com.android.wellsandwhistles.deckofcards;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -35,18 +36,35 @@ public class MainActivity extends AppCompatActivity {
         textDeckSize = (TextView) findViewById(R.id.text_deck_size);
         textYourCard = (TextView) findViewById(R.id.text_your_card);
 
+        mCards = new Cards(mSuits);
+
+        updateUi();
+
         buttonPickCard = (Button) findViewById(R.id.button_pick_card);
         buttonDealDeck = (Button) findViewById(R.id.button_deal_deck);
+        buttonPickCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateUi();
+            }
+        });
 
-        mCards = new Cards(mSuits);
-        Log.i(TAG, "Deck size: " + Integer.toString(mCards.getDeckSize()));
-        Log.i(TAG, "Cards in deck: " + mCards.toString());
+        buttonDealDeck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCards = new Cards(mSuits);
+                updateUi();
+            }
+        });
+    }
 
+    private void updateUi() {
         yourCard = mCards.dealOneCard();
-
-        textDeckSize.setText(Integer.toString(mCards.getDeckSize()));
+        textDeckSize.setText("Deck size: " + Integer.toString(mCards.getDeckSize()));
         textYourCard.setText("Your card is the " + Integer.toString(yourCard.getNumber()) +
-        " of " + yourCard.getSuit());
+                " of " + yourCard.getSuit());
+
+        Log.i(TAG, "Cards in deck: " + mCards.toString());
     }
 
 }
