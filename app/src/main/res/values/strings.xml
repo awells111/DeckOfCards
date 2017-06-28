@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Deck Of Cards</string>
+    <string name="pick_a_card">PICK A CARD</string>
+    <string name="deal_new_deck">DEAL NEW DECK</string>
 </resources>

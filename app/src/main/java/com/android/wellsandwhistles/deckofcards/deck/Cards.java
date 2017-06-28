@@ -21,19 +21,6 @@ public class Cards {
         addSuits(suits);
     }
 
-    private void addSuits(String[] suits) {
-        for (String s : suits) {
-            addSuit(s);
-        }
-    }
-
-    private void addSuit(String suit) {
-        for (int i = 1; i <= count; i++) {
-            mCards.add(new Card(i, suit));
-            mDeckSize++;
-        }
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -48,5 +35,27 @@ public class Cards {
 
     public int getDeckSize() {
         return mDeckSize;
+    }
+
+    private void addSuits(String[] suits) {
+        for (String s : suits) {
+            addSuit(s);
+        }
+    }
+
+    private void addSuit(String suit) {
+        for (int i = 1; i <= count; i++) {
+            mCards.add(new Card(i, suit));
+            mDeckSize++;
+        }
+    }
+
+    private void shuffle() {
+        //todo shuffle deck
+    }
+
+    // Returns the top card of the deck
+    public Card dealOneCard() {
+        return mCards.get(0);
     }
 }
