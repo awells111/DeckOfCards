@@ -14,17 +14,14 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    // Our deck
+    // The deck of cards
     private Cards mCards;
 
     // The card that has been dealt to the user
-    private Card yourCard;
+    private Card mYourCard;
 
     private TextView textDeckSize;
     private TextView textYourCard;
-
-    private Button buttonPickCard;
-    private Button buttonDealDeck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         updateUi();
 
-        buttonPickCard = (Button) findViewById(R.id.button_pick_card);
-        buttonDealDeck = (Button) findViewById(R.id.button_deal_deck);
+        Button buttonPickCard = (Button) findViewById(R.id.button_pick_card);
+        Button buttonDealDeck = (Button) findViewById(R.id.button_deal_deck);
         buttonPickCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,14 +56,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //todo handle config changes
     private void updateUi() {
-
-        yourCard = mCards.dealOneCard();
+        mYourCard = mCards.dealOneCard();
 
         textDeckSize.setText("Deck size: " + mCards.getDeckSize());
-        textYourCard.setText("Your card is the " + yourCard.getNumber() +
-                " of " + yourCard.getSuit());
+        textYourCard.setText("Your card is the " + mYourCard.getNumber() +
+                " of " + mYourCard.getSuit());
 
         Log.i(TAG, "Cards in deck: " + mCards.toString());
     }
