@@ -9,18 +9,18 @@ import java.util.Collections;
 public class Cards {
 
     // Our deck of cards.
-    private ArrayList<Card> mCards;
+    private final ArrayList<Card> mCards;
 
     // The number of cards currently in a deck. This number is increased every time a card is added.
     private int mDeckSize = 0;
 
-    // Number of cards per suit.
-    private final int count = 13;
+    private final String[] mNumbers = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+            "Ten", "Jack", "Queen", "King"};
+    private final String[] mSuits = {"Spades", "Diamonds", "Clubs", "Hearts"};
 
-    public Cards(String[] suits) {
+    public Cards() {
         mCards = new ArrayList<>();
-        addSuits(suits);
-        shuffle();
+        createDeck();
     }
 
     @Override
@@ -39,29 +39,32 @@ public class Cards {
         return mDeckSize;
     }
 
-    private void addSuits(String[] suits) {
-        for (String s : suits) {
-            addSuit(s);
-        }
-    }
-
-    private void addSuit(String suit) {
-        for (int i = 1; i <= count; i++) {
-            mCards.add(new Card(i, suit));
-            mDeckSize++;
-        }
-    }
-
-    private void shuffle() {
-        //todo shuffle deck
-        Collections.shuffle(mCards);
-    }
-
     // Returns the top card of the deck then deletes it so we do not draw it again
     public Card dealOneCard() {
         Card yourCard = mCards.get(0);
         mCards.remove(0);
         mDeckSize--;
         return yourCard;
+    }
+
+    // Creates and shuffles our deck
+    private void createDeck() {
+
+        // For each suit in mSuits
+        for (String mSuit : mSuits) {
+
+            // For each number in mNumbers
+            for (String mNumber : mNumbers) {
+                mCards.add(new Card(mNumber, mSuit));
+                mDeckSize++;
+            }
+        }
+
+        shuffle();
+    }
+
+    // Included as a separate function as per project guidelines
+    private void shuffle() {
+        Collections.shuffle(mCards);
     }
 }

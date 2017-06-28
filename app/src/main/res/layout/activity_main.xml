@@ -3,7 +3,8 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:padding="8dp">
 
     <TextView
         android:id="@+id/text_deck_size"
@@ -11,6 +12,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
+        android:textColor="@color/colorText"
+        android:textSize="32sp"
         tools:text="Deck size: 0"/>
 
     <TextView
@@ -19,7 +22,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        tools:text="Your card is: Ace of Spades"/>
+        android:textColor="@color/colorText"
+        android:textSize="32sp"
+        tools:text="Your card is the Ace of Spades"/>
 
     <LinearLayout
         android:layout_width="match_parent"

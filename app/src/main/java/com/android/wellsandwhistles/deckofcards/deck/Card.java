@@ -6,10 +6,10 @@ package com.android.wellsandwhistles.deckofcards.deck;
 
 public class Card {
 
-    private int mNumber;
+    private String mNumber;
     private String mSuit;
 
-    public Card(int number, String suit) {
+    public Card(String number, String suit) {
         mNumber = number;
         mSuit = suit;
     }
@@ -22,7 +22,7 @@ public class Card {
                 '}';
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return mNumber;
     }
 

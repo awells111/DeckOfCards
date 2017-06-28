@@ -1,7 +1,7 @@
 package com.android.wellsandwhistles.deckofcards;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +13,6 @@ import com.android.wellsandwhistles.deckofcards.deck.Cards;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-
-    private String[] mSuits = {"Spades", "Diamonds", "Clubs", "Hearts"};
 
     // Our deck
     private Cards mCards;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         textDeckSize = (TextView) findViewById(R.id.text_deck_size);
         textYourCard = (TextView) findViewById(R.id.text_your_card);
 
-        mCards = new Cards(mSuits);
+        mCards = new Cards();
 
         updateUi();
 
@@ -45,14 +43,17 @@ public class MainActivity extends AppCompatActivity {
         buttonPickCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateUi();
+                // We do not want to deal a card if no cards are left.
+                if (mCards.getDeckSize() > 0) {
+                    updateUi();
+                }
             }
         });
 
         buttonDealDeck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCards = new Cards(mSuits);
+                mCards = new Cards();
                 updateUi();
             }
         });
@@ -60,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
     //todo handle config changes
     private void updateUi() {
+
         yourCard = mCards.dealOneCard();
-        textDeckSize.setText("Deck size: " + Integer.toString(mCards.getDeckSize()));
-        textYourCard.setText("Your card is the " + Integer.toString(yourCard.getNumber()) +
+
+        textDeckSize.setText("Deck size: " + mCards.getDeckSize());
+        textYourCard.setText("Your card is the " + yourCard.getNumber() +
                 " of " + yourCard.getSuit());
 
         Log.i(TAG, "Cards in deck: " + mCards.toString());
