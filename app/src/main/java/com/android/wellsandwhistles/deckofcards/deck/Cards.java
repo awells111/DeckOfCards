@@ -8,11 +8,8 @@ import java.util.Collections;
 
 public class Cards {
 
-    // Our deck of cards.
+    // The deck of cards
     private final ArrayList<Card> mCards;
-
-    // The number of cards currently in a deck. This number is increased every time a card is added.
-    private int mDeckSize = 0;
 
     private final String[] mNumbers = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
             "Ten", "Jack", "Queen", "King"};
@@ -23,6 +20,7 @@ public class Cards {
         createDeck();
     }
 
+    // Lists all the cards in mCards
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -36,27 +34,25 @@ public class Cards {
     }
 
     public int getDeckSize() {
-        return mDeckSize;
+        return mCards.size();
     }
 
     // Returns the top card of the deck then deletes it so we do not draw it again
     public Card dealOneCard() {
         Card yourCard = mCards.get(0);
         mCards.remove(0);
-        mDeckSize--;
         return yourCard;
     }
 
     // Creates and shuffles our deck
     private void createDeck() {
 
-        // For each suit in mSuits
+        // Create 4 suits of cards
         for (String mSuit : mSuits) {
 
-            // For each number in mNumbers
+            // Create 13 cards for each suit
             for (String mNumber : mNumbers) {
                 mCards.add(new Card(mNumber, mSuit));
-                mDeckSize++;
             }
         }
 
